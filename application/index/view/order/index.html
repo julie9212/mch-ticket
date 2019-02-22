@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购票系统 | 订单</title>
+	<link rel="stylesheet" href="__STATIC__/style/bs/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="style/bs/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" href="__STATIC__/style/css/index.css">
+	<script src="__STATIC__/style/bs/js/jquery-1.11.3.min.js"></script>
+	<script src="__STATIC__/style/bs/js/bootstrap.min.js"></script>
+	<!-- 图片上传 -->
+    <link rel="stylesheet" type="text/css" href="__STATIC__/style/img/css/home.css">
+<style>
+	.ban-login{
+		background: url("__STATIC__/images/login/banner.png")  no-repeat fixed top;
+		height:220px;
+	}
+</style>
+</head>
+<body style="background:#eee">
+
+	<!-- 导航开始 -->
+	{include file="public/header" /}
+	<!-- 导航结束 -->
+
+	<!-- banner开始 -->
+	<div class="ban-login"></div>
+	<!-- banner结束 -->
+
+
+	<!-- 内容开始 main-->
+	<div class="container" style="margin-top:-80px;z-index:2">
+		<form class="form-horizontal" name=alipayment action="{:url('/zhifubao')}" method=post>
+			<div class="row" style="background:#fff;padding:60px 40px" name="divcontent">
+				<!-- 订单号 -->
+				<!-- <input type="hidden" name="WIDout_trade_no" value="{$info.ordernum}" /> -->
+				<input type="hidden" name="WIDout_trade_no" value="{$info.ordernum}" />
+				<!-- 订单名称 -->
+				<input type="hidden" name="WIDsubject" value="{$info.username}" />
+				<!-- 付款金额 -->
+				<!-- <input type="hidden" name="WIDtotal_amount" value="{$info.zprice}" /> -->
+				<input type="hidden" name="WIDtotal_amount" value="{$info.zprice}" />
+				<!-- 商品描述 -->
+				<input type="hidden" name="WIDbody" value="{$info.num}" />
+
+
+
+
+				<!-- title样式 -->
+				<div class="col-sm-12 ticket-tits">
+					<div class="ticket-mains"><span></span></div>
+					<p>订单支付</p>
+				</div>
+				<!-- 打折码 -->
+				<!-- <div class="col-sm-12"  style="padding:15px 0">
+					<p>点击标记可以重新选择门票，重新使用优惠码，修改嘉宾信息。<br>点取消可以取消该嘉宾。</p>
+				</div> -->
+
+
+
+				<!-- 门票类型 -->
+				<div class="col-sm-12 tabs" style="padding:15px 0">
+				<p>订单号：{$info.ordernum}</p>
+				<p>账户名：{$info.username}</p>
+				<p>购票数：{$info.num}</p>
+				<p>付款金额：{$info.zprices}</p>
+				<p>订单生成时间：{$info.date}</p>
+				</div>
+				<!-- 门票类型 -->
+				<div class="col-sm-8 tabs text-center" style="padding:15px 0">
+					<table class="table table-hover" style="border:1px solid #ddd">
+					  <tr class="active">
+					  	<th style="text-align: center;">编号</th>
+					  	<th style="text-align: center;">参会者姓名</th>
+					  	<th style="text-align: center;">门票类型</th>
+					  	<th style="text-align: center;">价格</th>
+					  </tr>
+					  <tr>
+					  	{volist name="tickets" id="vo" key="k"}
+					  	<input type="hidden"  name="pid[]" value="{$vo.id}" />
+					  	<td>{$k}</td>
+					  	<td>{$vo.name}</td>
+					  	<td>{$vo.type}</td>
+					  	<td>{$vo.price}</td>
+					  </tr>
+					  {/volist}
+					</table>
+				</div>
+				
+				<!-- title样式 -->
+				<div class="col-sm-12 ticket-tits">
+					<div class="ticket-mains"><span></span></div>
+					<p>支付方式</p>
+				</div>
+				<div class="col-sm-12" style="padding:20px 0">
+					<p style="font:16px/30px '微软雅黑';color:#2f9298">如果您已成功完成支付，但注册状态并没有完成，请不要再次发起支付。</p>
+					<p style="font:16px/30px '微软雅黑';color:#666">请选择一种支付方式：</p>
+					<div class="col-sm-12" style="padding:30px 0">
+						<div class="col-sm-3"><img src="__STATIC__/images/img/wx.jpg" class="img-responsive img-thumbnail zf-border" alt="Responsive image"></div>
+						<div class="col-sm-3"><img src="__STATIC__/images/img/zhifubao.jpg" class="img-responsive img-thumbnail" alt="Responsive image"></div>
+					</div>
+					<p style="font:16px/30px '微软雅黑';color:#666">如果注册信息正确，点击“提交”，页面会自动跳转到“支付”页面进行支付。</p>
+				</div>
+				<div class="col-sm-12" style="padding:15px 0">
+					<div class="col-sm-6 col-sm-offset-3">
+						<div class="col-sm-6 col-sm-offset-3 btns">
+							<input class="btn btn-success" type="submit" value="立即支付">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- 内容结束 main-->
+
+	<!-- footer开始 -->
+	{include file="public/footer" /}
+	<!-- footer结束 -->
+</body>
+</html>
+
+<script>
+
+</script>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购票系统 | 登录</title>
+	<link rel="stylesheet" href="__STATIC__/style/bs/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="style/bs/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" href="__STATIC__/style/css/index.css">
+	<script src="__STATIC__/style/bs/js/jquery-1.11.3.min.js"></script>
+	<script src="__STATIC__/style/bs/js/bootstrap.min.js"></script>
+	<!-- 图片上传 -->
+    <link rel="stylesheet" type="text/css" href="__STATIC__/style/img/css/home.css">
+<style>
+	.ban-login{
+		background: url("__STATIC__/images/login/banner.png")  no-repeat fixed top;
+		height:220px;
+	}
+</style>
+</head>
+<body style="background:#eee">
+	<!-- 导航开始 -->
+	{include file="public/header" /}
+	<!-- 导航结束 -->
+
+	<!-- banner开始 -->
+	<div class="ban-login"></div>
+	<!-- banner结束 -->
+
+
+	<!-- 内容开始 main-->
+	<div class="container" style="margin-top:-80px;z-index:2">
+		<form class="form-horizontal" action="{:url('/buyor')}" method="post">
+			<div class="row" style="background:#fff;padding:60px 40px">
+				<!-- title样式 -->
+				<div class="col-sm-12 ticket-tits" style="margin-bottom:20px">
+					<div class="ticket-mains"><span></span></div>
+					<p>结算门票</p>
+				</div>
+				<!-- 打折码 -->
+				<div class="col-sm-10">
+					<p style="font:18px/30px '微软雅黑'">付款货币：人民币</p>
+				</div>
+				<div class="col-sm-2">
+					<p style="font:18px/30px '微软雅黑';color:#2f9298"><a href="{:url('/ticket')}">添加门票</a></p>
+				</div>
+				<!-- 门票类型 -->
+				<div class="col-sm-12 tabs text-center" style="padding-bottom:15px">
+					<table class="table table-hover" style="border:1px solid #ddd">
+					  <tr class="active">
+					  	<th style="text-align: center;">选择</th>
+					  	<th style="text-align: center;">参会者姓名</th>
+					  	<th style="text-align: center;">门票类型</th>
+					  	<th style="text-align: center;">价格</th>
+					  	<th style="text-align: center;">状态</th>
+					  	<th style="text-align: center;">快捷链接</th>
+					  </tr>
+					  <tr>
+					  	{volist name="info" id="vo" key="k"}
+					  	<input type="hidden"  name="pid[]" value="{$vo.id}" />
+					  	<td>{$k}
+						  	<!-- <label class="radio-inline">
+							  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+							</label> -->
+						</td>
+					  	<td>{$vo.name}</td>
+					  	<td>{$vo.type}</td>
+					  	<td>{$vo.price}</td>
+						<td>
+						{switch name=$vo.buy}
+						    {case value="0"}未完成{/case}
+						    {case value="1"}已完成{/case}
+						    {default /}default
+						{/switch}
+						</td>
+
+					  	<td><a href="#">编辑</a> | <span onclick="del({$vo.id})">删除</span></td>
+					  </tr>
+					  {/volist}
+					  
+					  <tr>
+					  	<td>总计：</td>
+					  	<td></td>
+					  	<td>
+					  		{$num}张
+							<input type="hidden"  name="num" value="{$num}" />
+					  	</td>
+					  	<td>
+					  		￥{$zpricenum}
+					  		<input type="hidden"  name="zprice" value="{$zprice}" />
+					  	</td>
+					  	<td></td>
+					  	<td></td>
+					  </tr>
+					</table>
+				</div>
+				<!-- title样式 -->
+				<!-- <div class="col-sm-12 ticket-tits">
+					<div class="ticket-mains"><span></span></div>
+					<p>支付方式</p>
+				</div>
+				<div class="col-sm-12" style="padding:20px 0">
+					<p style="font:16px/30px '微软雅黑';color:#2f9298">如果您已成功完成支付，但注册状态并没有完成，请不要再次发起支付。</p>
+					<p style="font:16px/30px '微软雅黑';color:#666">请选择一种支付方式：</p>
+					<div class="col-sm-12" style="padding:30px 0">
+						<div class="col-sm-4"><img src="__STATIC__/images/img/zhifubao.jpg" class="img-responsive img-thumbnail" alt="Responsive image"></div>
+					</div>
+					<p style="font:16px/30px '微软雅黑';color:#666">如果注册信息正确，点击“提交”，页面会自动跳转到“支付”页面进行支付。</p>
+				</div> -->
+				<div class="col-sm-12" style="padding:15px 0">
+					<div class="col-sm-6 col-sm-offset-3">
+						<div class="col-sm-6 col-sm-offset-3 btns">
+							<input class="btn btn-success" type="submit" value="立即购买">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- 内容结束 main-->
+
+	<!-- footer开始 -->
+	{include file="public/footer" /}
+	<!-- footer结束 -->
+</body>
+</html>
+
+<script>
+	function del(id){
+		var del = confirm('删除后不可恢复，确认要删除吗');
+		// console.log(del);
+		if(del == true){
+			// console.log(123);
+			$.post("/buydel", { 'id': id },
+		   		function(data){
+		   			// data 后台传1成功，传2失败
+		   			if(data == 1){
+		   				alert('删除成功');
+		   				window.location.reload();
+		   			}else{
+		   				alert('删除失败');
+		   			}
+		   });
+		}
+	}
+</script>

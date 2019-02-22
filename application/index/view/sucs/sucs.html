@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购票系统 | 支付成功</title>
+	<link rel="stylesheet" href="__STATIC__/style/bs/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="style/bs/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" href="__STATIC__/style/css/index.css">
+	<script src="__STATIC__/style/bs/js/jquery-1.11.3.min.js"></script>
+	<script src="__STATIC__/style/bs/js/bootstrap.min.js"></script>
+<style>
+	.ban-login{
+		background: url("__STATIC__/images/login/banner.png")  no-repeat fixed top;
+		height:220px;
+	}
+</style>
+</head>
+<body style="background:#eee">
+	<!-- 导航开始 -->
+	{include file="public/header" /}
+	<!-- 导航结束 -->
+
+	<!-- banner开始 -->
+	<div class="ban-login"></div>
+	<!-- banner结束 -->
+
+
+	<!-- 内容开始 main-->
+	<div class="container" style="margin-top:-80px;z-index:2">
+		<div class="row" style="background:#fff;padding:60px 40px">
+			<!-- 登录 -->
+			<div class="col-sm-12 text-center">
+				<img src="__STATIC__/images/img/success.png" class="img-responsive center-block" alt="Responsive image">
+				<p style="font:500 30px/70px '微软雅黑'">购买成功</p><br>
+				<div class="col-sm-6" style="padding:15px 0">
+					<div class="col-sm-5 col-sm-offset-7 btns">
+						<a href="#" class="btn btn-success" type="submit" style="color:#fff">返回首页</a>
+					</div>
+				</div>
+				<div class="col-sm-6" style="padding:15px 0">
+					<div class="col-sm-5 col-sm-offset-0 btns">
+						<a href="#" class="btn btn-success" type="submit" style="color:#fff">查看订单</a>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	<!-- 内容结束 main-->
+
+	<!-- footer开始 -->
+	{include file="public/footer" /}
+	<!-- footer结束 -->
+</body>
+</html>

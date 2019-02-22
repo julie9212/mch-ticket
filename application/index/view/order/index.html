@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>购票系统 | 订单</title>
+	<title>购票系统 | 登录</title>
 	<link rel="stylesheet" href="__STATIC__/style/bs/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="style/bs/css/bootstrap-theme.min.css"> -->
 	<link rel="stylesheet" href="__STATIC__/style/css/index.css">
@@ -96,8 +96,7 @@
 					<p style="font:16px/30px '微软雅黑';color:#2f9298">如果您已成功完成支付，但注册状态并没有完成，请不要再次发起支付。</p>
 					<p style="font:16px/30px '微软雅黑';color:#666">请选择一种支付方式：</p>
 					<div class="col-sm-12" style="padding:30px 0">
-						<div class="col-sm-3"><img src="__STATIC__/images/img/wx.jpg" class="img-responsive img-thumbnail zf-border" alt="Responsive image"></div>
-						<div class="col-sm-3"><img src="__STATIC__/images/img/zhifubao.jpg" class="img-responsive img-thumbnail" alt="Responsive image"></div>
+						<div class="col-sm-4"><img src="__STATIC__/images/img/zhifubao.jpg" class="img-responsive img-thumbnail" alt="Responsive image"></div>
 					</div>
 					<p style="font:16px/30px '微软雅黑';color:#666">如果注册信息正确，点击“提交”，页面会自动跳转到“支付”页面进行支付。</p>
 				</div>
@@ -120,5 +119,21 @@
 </html>
 
 <script>
-
+	function del(id){
+		var del = confirm('删除后不可恢复，确认要删除吗');
+		// console.log(del);
+		if(del == true){
+			// console.log(123);
+			$.post("/buydel", { 'id': id },
+		   		function(data){
+		   			// data 后台传1成功，传2失败
+		   			if(data == 1){
+		   				alert('删除成功');
+		   				window.location.reload();
+		   			}else{
+		   				alert('删除失败');
+		   			}
+		   });
+		}
+	}
 </script>
